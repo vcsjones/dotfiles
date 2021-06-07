@@ -1,0 +1,10 @@
+[user]
+	email = kevin@vcsjones.com
+	name = Kevin Jones
+	signingkey = 19922BBC1D5CE15E
+[pull]
+	ff = only
+[alias]
+	fa = fetch --all
+[init]
+	defaultBranch = main
