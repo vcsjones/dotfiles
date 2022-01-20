@@ -1,0 +1,36 @@
+format = """
+$username\
+$hostname\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$sudo\
+$fill\
+$custom\
+$line_break\
+$jobs\
+$character"""
+
+[fill]
+symbol = " "
+
+[directory.substitutions]
+"System.Security.Cryptography" = "S….S….Cryptography"
+
+[custom.arch64]
+command = "echo -n x64"
+when = "[[ $(arch) == *i386* ]]"
+style = "fg:white"
+symbol = "❮ "
+
+[custom.archas]
+command = "echo -n AS"
+when = "[[ $(arch) != *i386* ]]"
+style = "fg:white"
+symbol = "❮ "
