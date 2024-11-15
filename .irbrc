@@ -21,24 +21,24 @@ while !path.root?
   end
 end
 
-FG = "\e[38;5;255m".freeze
-FG_BLACK = "\e[38;5;0m".freeze
-FG_DARK = "\e[38;5;88m".freeze
-BG_DARK = "\e[48;5;88m".freeze
-BG_M = "\e[48;5;206m".freeze
-FG_M = "\e[38;5;206m".freeze
-FG_INV = "\e[38;5;160m".freeze
-BG = "\e[48;5;160m".freeze
-AG = (FG + BG).freeze
-RST = "\e[m".freeze
+FG ||= "\e[38;5;255m".freeze
+FG_BLACK ||= "\e[38;5;0m".freeze
+FG_DARK ||= "\e[38;5;88m".freeze
+BG_DARK ||= "\e[48;5;88m".freeze
+BG_M ||= "\e[48;5;206m".freeze
+FG_M ||= "\e[38;5;206m".freeze
+FG_INV ||= "\e[38;5;160m".freeze
+BG ||= "\e[48;5;160m".freeze
+AG ||= (FG + BG).freeze
+RST ||= "\e[m".freeze
 
 expand = Pathname.new(Dir.pwd).relative_path_from(nearest_gemfile)
 base_folder = Pathname.new(File.join(nearest_gemfile.basename, expand.to_s)).cleanpath
 components = base_folder.each_filename.collect(&:to_s)
 current_folder = components.join("#{FG_DARK} \u{E0B1} #{FG}")
 
-PROMPT_NORMAL = "#{AG} #{current_folder}#{RST}#{BG} #{FG_INV}#{BG_DARK}\u{E0B0}#{FG} (#{RUBY_VERSION}) #{FG_DARK}#{BG}\u{E0B0}#{AG} $ #{RST}#{FG_INV}\u{E0B0}#{RST} "
-PROMPT_MORE =   "#{AG} #{current_folder}#{RST}#{BG} #{FG_INV}#{BG_DARK}\u{E0B0}#{FG} (#{RUBY_VERSION}) #{FG_DARK}#{BG_M}\u{E0B0}#{FG}#{BG_M} \u{27A5} #{RST}#{FG_M}\u{E0B0}#{RST} "
+PROMPT_NORMAL ||= "#{AG} #{current_folder}#{RST}#{BG} #{FG_INV}#{BG_DARK}\u{E0B0}#{FG} (#{RUBY_VERSION}) #{FG_DARK}#{BG}\u{E0B0}#{AG} $ #{RST}#{FG_INV}\u{E0B0}#{RST} "
+PROMPT_MORE ||=   "#{AG} #{current_folder}#{RST}#{BG} #{FG_INV}#{BG_DARK}\u{E0B0}#{FG} (#{RUBY_VERSION}) #{FG_DARK}#{BG_M}\u{E0B0}#{FG}#{BG_M} \u{27A5} #{RST}#{FG_M}\u{E0B0}#{RST} "
 IRB.conf[:PROMPT] ||= {}
 IRB.conf[:PROMPT][:CUSTOM] = {
   PROMPT_I: PROMPT_NORMAL,
